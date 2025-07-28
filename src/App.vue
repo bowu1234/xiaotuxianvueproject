@@ -3,6 +3,7 @@
 <template>
   <el-button type="primary">Primary</el-button>
   <el-button type="success" plain>Success</el-button>
+  <RouterView />
 </template>
 
 <style scoped>
