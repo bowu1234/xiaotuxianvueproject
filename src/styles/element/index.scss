@@ -1,4 +1,3 @@
-// 定义Element Plus变量
 @forward "element-plus/theme-chalk/src/common/var.scss" with (
   $colors: (
     "primary": (
@@ -16,9 +15,5 @@
     "error": (
       "base": #cf4444,
     ),
-  ),
-  $button: (
-    "border-radius": 4px,
-    "font-weight": 400,
   )
 );
