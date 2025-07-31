@@ -5,21 +5,13 @@
       <div class="container">
         <dl>
           <dt>客房服务</dt>
-          <dd>
-            <i class="iconfont icon-kefu">在线客服</i>
-          </dd>
-          <dd>
-            <i class="iconfont icon-question">问题反馈</i>
-          </dd>
+          <dd><i class="iconfont icon-kefu"></i>在线客服</dd>
+          <dd><i class="iconfont icon-question"></i>问题反馈</dd>
         </dl>
         <dl>
           <dt>关注我们</dt>
-          <dd>
-            <i class="iconfont icon-weixin">公众号</i>
-          </dd>
-          <dd>
-            <i class="iconfont icon-weibo">微博</i>
-          </dd>
+          <dd><i class="iconfont icon-weixin"></i>公众号</dd>
+          <dd><i class="iconfont icon-weibo"></i>微博</dd>
         </dl>
         <dl>
           <dt>下载APP</dt>
@@ -79,14 +71,13 @@
     .container {
       display: flex;
       padding: 60px 0 40px 25px;
-      align-items: center;
       dl {
         height: 190px;
         text-align: center;
         padding: 0 72px;
         border-right: 1px solid #f2f2f2;
         color: #999;
-        overflow: hidden;
+        // overflow: hidden;
         &:first-child {
           padding-left: 0;
         }
@@ -95,8 +86,8 @@
           padding-right: 0;
         }
         dt {
-          font-size: 18px;
           line-height: 1;
+          font-size: 18px;
         }
         dd {
           margin: 36px 12px 0 0;
@@ -106,7 +97,7 @@
           padding-top: 10px;
           border: 1px solid #ededed;
           .iconfont {
-            font-size: 20px;
+            font-size: 36px;
             display: block;
             color: #666;
           }

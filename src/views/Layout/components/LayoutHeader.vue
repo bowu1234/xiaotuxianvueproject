@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+import { useCategoryStore } from "@/stores/category";
+
+const categoryStore = useCategoryStore();
+</script>
 
 <template>
   <header class="app-header">
@@ -7,12 +11,9 @@
         <RouterLink to="/"></RouterLink>
       </h1>
       <ul class="app-header-nav">
-        <li class="home">
-          <RouterLink to="/">首页</RouterLink>
+        <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">
+          <RouterLink to="/">{{ item.name }}</RouterLink>
         </li>
-        <li><RouterLink to="/">居家</RouterLink></li>
-        <li><RouterLink to="/">美食</RouterLink></li>
-        <li><RouterLink to="/">服饰</RouterLink></li>
       </ul>
       <div class="search">
         <i class="iconfont icon-search"></i>
@@ -24,60 +25,75 @@
 
 <style scoped lang="scss">
 .app-header {
+  // position: sticky; /* 粘性定位 */
+  // top: 0;
+  // z-index: 1000;
   background-color: #fff;
+  width: 100%;
+  // will-change: transform; /* 提示浏览器优化 transform 属性 */
+  // transition: all 0.3s ease; /* 添加过渡效果，使切换更平滑 */
+  // box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* 添加阴影，增强视觉效果 */
+
   .container {
     display: flex;
     align-items: center;
-    .logo {
-      width: 200px;
-      a {
-        display: block;
-        height: 132px;
-        width: 100%;
-        background: url("@/assets/images/logo.png") no-repeat center 18px / contain;
-      }
+  }
+  .logo {
+    width: 200px;
+
+    a {
+      display: block;
+      height: 132px;
+      width: 100%;
+      text-indent: -9999px;
+      background: url("@/assets/images/logo.png") no-repeat center 18px / contain;
     }
-    .app-header-nav {
-      width: 820px;
-      height: 32px;
-      display: flex;
-      align-items: center;
+  }
+
+  .app-header-nav {
+    width: 820px;
+    display: flex;
+    padding-left: 40px;
+    position: relative;
+    z-index: 998;
+
+    li {
+      width: 38px;
       text-align: center;
-      li {
-        display: inline-block;
-        font-family: PingFangSC-Regular;
+      margin-right: 40px;
+
+      a {
         font-size: 16px;
-        color: #333333;
-        font-weight: 400;
-        width: 40px;
-        margin-right: 40px;
-        padding-left: 17px;
-        a {
-          display: inline-block;
-          align-items: center;
-          text-align: center;
-          line-height: 32px;
-          width: 32px;
-          height: 32px;
-          &:hover {
-            color: #5eb69c;
-          }
+        display: inline-block;
+        line-height: 32px;
+        height: 32px;
+
+        &:hover {
+          color: $xtxColor;
+          border-bottom: 1px solid $xtxColor;
         }
       }
-      .home {
-        margin-left: 40px;
+      .active {
+        color: $xtxColor;
+        border-bottom: 1px solid $xtxColor;
       }
     }
-    .search {
-      padding-left: 10px;
-      .iconfont {
-        background: url("#");
-      }
-      input {
-        width: 170px;
-        height: 32px;
-        box-shadow: 0px 3px 1px #f4f4f4;
-      }
+  }
+  .search {
+    width: 170px;
+    height: 32px;
+    position: relative;
+    border-bottom: 1px solid #e7e7e7;
+    line-height: 32px;
+
+    .icon-search {
+      font-size: 18px;
+      margin-left: 5px;
+    }
+    input {
+      width: 140px;
+      padding-left: 5px;
+      color: #666;
     }
   }
 }
