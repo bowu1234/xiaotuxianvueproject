@@ -10,7 +10,6 @@ import HomeProduct from "@/views/Home/components/HomeProduct.vue";
     <HomeCategory></HomeCategory>
     <HomeBanner></HomeBanner>
   </div>
-
   <HomeNew></HomeNew>
   <HomeHot></HomeHot>
   <HomeProduct></HomeProduct>
