@@ -45,9 +45,6 @@ defineProps({
           margin-left: 20px;
         }
       }
-
-      div {
-      }
     }
   }
 }

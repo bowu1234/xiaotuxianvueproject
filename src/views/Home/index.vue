@@ -14,8 +14,3 @@ import HomeProduct from "@/views/Home/components/HomeProduct.vue";
   <HomeHot></HomeHot>
   <HomeProduct></HomeProduct>
 </template>
-<style lang="scss" scoped>
-.home {
-  height: 1500px;
-}
-</style>
