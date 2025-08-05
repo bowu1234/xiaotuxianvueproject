@@ -18,6 +18,8 @@ onMounted(() => categoryStore.getCategory());
   <LayoutHeader />
   <LayoutFixed></LayoutFixed>
   <!-- <Home></Home> -->
+
+  <!-- <RouterView :key="$route.fullPath"></RouterView> -->
   <RouterView></RouterView>
   <LayouFooter></LayouFooter>
 </template>
