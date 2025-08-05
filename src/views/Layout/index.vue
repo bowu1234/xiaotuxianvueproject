@@ -17,6 +17,7 @@ onMounted(() => categoryStore.getCategory());
   <LayoutNav></LayoutNav>
   <LayoutHeader />
   <LayoutFixed></LayoutFixed>
-  <Home></Home>
+  <!-- <Home></Home> -->
+  <RouterView></RouterView>
   <LayouFooter></LayouFooter>
 </template>
