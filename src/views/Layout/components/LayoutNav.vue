@@ -4,7 +4,7 @@
   <nav class="app-topnav">
     <div class="container">
       <ul class="navlist">
-        <template v-if="true">
+        <template v-if="flase">
           <li class="nav-item">
             <a href="javascript:;"><i class="iconfont icon-user"></i>周杰伦</a>
           </li>
@@ -19,7 +19,9 @@
           <li class="nav-item"><a href="javascript:;">会员中心</a></li>
         </template>
         <template v-else>
-          <li class="nav-item"><a href="javascript::">请先登录</a></li>
+          <li class="nav-item">
+            <a href="javascript::" @click="$router.push('/login')">请先登录</a>
+          </li>
           <li class="nav-item"><a href="javascript::">帮助中心</a></li>
           <li class="nav-item"><a href="javascript::">关于我们</a></li>
         </template>

@@ -1,22 +1,30 @@
 <script setup>
 import { getDetailAPI } from "@/apis/detail";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import DetailHot from "./components/DetailHot.vue";
 
 const goods = ref({});
 const route = useRoute();
 
-const getGoods = async (id) => {
+const getGoods = async (id = route.params.id) => {
   const res = await getDetailAPI(route.params.id);
 
   goods.value = res.result;
   // console.log(res);
 };
-onMounted(() => getGoods());
+onMounted(() => getGoods(route.params.id));
 const changeSku = (sku) => {
-  console.log(sku);
+  // console.log(sku);
 };
+watch(
+  () => route.params.id,
+  (newId, oldId) => {
+    if (newId !== oldId) {
+      getGoods();
+    }
+  }
+);
 </script>
 
 <template>
@@ -31,7 +39,7 @@ const changeSku = (sku) => {
           <el-breadcrumb-item :to="{ path: '/category/sub/${goods.categories[0].id}' }">{{
             goods.categories[0].name
           }}</el-breadcrumb-item>
-          <el-breadcrumb-item>抓绒保暖，毛毛虫子儿童运动鞋</el-breadcrumb-item>
+          <el-breadcrumb-item>{{ goods.name }}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
 

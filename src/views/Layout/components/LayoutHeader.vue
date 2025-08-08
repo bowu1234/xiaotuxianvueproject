@@ -1,7 +1,13 @@
 <script setup>
+import { getGoodsAPI } from "@/apis/home";
 import { useCategoryStore } from "@/stores/category";
-
+import { onMounted, ref } from "vue";
 const categoryStore = useCategoryStore();
+const loading = ref(true);
+onMounted(async () => {
+  await getGoodsAPI();
+  loading.value = false;
+});
 </script>
 
 <template>
@@ -26,6 +32,10 @@ const categoryStore = useCategoryStore();
       </div>
     </div>
   </header>
+  <div v-if="loading">加载中...</div>
+  <div v-else>
+    <!-- 商品详情内容 -->
+  </div>
 </template>
 
 <style scoped lang="scss">
