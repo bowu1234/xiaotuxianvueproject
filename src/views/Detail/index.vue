@@ -3,7 +3,10 @@ import { getDetailAPI } from "@/apis/detail";
 import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import DetailHot from "./components/DetailHot.vue";
+import { countdownEmits, ElMessage } from "element-plus";
+import { useCartStore } from "@/stores/cartStore";
 
+const cartStore = useCartStore();
 const goods = ref({});
 const route = useRoute();
 
@@ -14,9 +17,7 @@ const getGoods = async (id = route.params.id) => {
   // console.log(res);
 };
 onMounted(() => getGoods(route.params.id));
-const changeSku = (sku) => {
-  // console.log(sku);
-};
+
 watch(
   () => route.params.id,
   (newId, oldId) => {
@@ -25,6 +26,36 @@ watch(
     }
   }
 );
+
+let skuObj = {};
+
+const changeSku = (sku) => {
+  // console.log(sku);
+  skuObj = sku;
+};
+
+const count = ref(1);
+const countChange = (count) => {
+  console.log(count);
+};
+
+const addCart = () => {
+  if (skuObj.skuId) {
+    cartStore.addCart({
+      id: goods.value.id,
+      name: goods.value.name,
+      picture: goods.value.mainPictures[0],
+      price: goods.value.price,
+      count: count.value,
+      skuId: skuObj.skuId,
+      attrsText: skuObj.specsText,
+      selected: true,
+    });
+    ElMessage.success("加入购物车成功");
+  } else {
+    ElMessage.warning("请选择规格");
+  }
+};
 </script>
 
 <template>
@@ -96,9 +127,9 @@ watch(
 
               <!-- sku组件 -->
               <XtxSku :goods="goods" @change="changeSku"></XtxSku>
-
+              <el-input-number v-model="count" @change="countChange" />
               <div>
-                <el-button size="large" class="btn">加入购物车</el-button>
+                <el-button size="large" class="btn" @click="addCart">加入购物车</el-button>
               </div>
             </div>
           </div>

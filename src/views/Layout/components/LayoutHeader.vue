@@ -2,6 +2,8 @@
 import { getGoodsAPI } from "@/apis/home";
 import { useCategoryStore } from "@/stores/category";
 import { onMounted, ref } from "vue";
+import HeaderCart from "./HeaderCart.vue";
+
 const categoryStore = useCategoryStore();
 const loading = ref(true);
 onMounted(async () => {
@@ -30,6 +32,7 @@ onMounted(async () => {
         <i class="iconfont icon-search"></i>
         <input type="text" placeholder="搜一搜" />
       </div>
+      <HeaderCart></HeaderCart>
     </div>
   </header>
   <div v-if="loading">加载中...</div>
