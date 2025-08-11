@@ -1,6 +1,6 @@
 <script setup>
 import { getGoodsAPI } from "@/apis/home";
-import { useCategoryStore } from "@/stores/category";
+import { useCategoryStore } from "@/stores/categoryStore";
 import { onMounted, ref } from "vue";
 import HeaderCart from "./HeaderCart.vue";
 

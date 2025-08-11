@@ -1,21 +1,45 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
+import { useUserStore } from "./userStore";
+import { insertCartAPI, findNewCartListAPI, delCartAPI } from "@/apis/cart";
 
 export const useCartStore = defineStore(
   "cart",
   () => {
+    const userStore = useUserStore();
+    const isLogin = computed(() => userStore.userInfo.token);
+
     const cartList = ref([]);
-    const addCart = (goods) => {
-      const item = cartList.value.find((item) => goods.skuId === item.skuId);
-      if (item) {
-        item.count++;
+    const updateNewList = async () => {
+      const res = await findNewCartListAPI();
+      cartList.value = res.result;
+    };
+    const addCart = async (goods) => {
+      if (isLogin.value) {
+        const { skuId, count } = goods;
+        await insertCartAPI({ skuId, count });
+        updateNewList();
       } else {
-        cartList.value.push(goods);
+        const item = cartList.value.find((item) => goods.skuId === item.skuId);
+        if (item) {
+          item.count++;
+        } else {
+          cartList.value.push(goods);
+        }
       }
     };
-    const delCart = (skuId) => {
-      const index = cartList.value.find((item) => skuId === item.skuId);
-      cartList.value.splice(index, 1);
+    const delCart = async (skuId) => {
+      if (isLogin.value) {
+        await delCartAPI([skuId]);
+        updateNewList();
+      } else {
+        const index = cartList.value.find((item) => skuId === item.skuId);
+        cartList.value.splice(index, 1);
+      }
+    };
+
+    const clearCart = () => {
+      cartList.value = [];
     };
     //单选框不会
     const singleCheck = (skuId, selected) => {
@@ -48,6 +72,8 @@ export const useCartStore = defineStore(
       allCheck,
       selectedCount,
       selectedPrice,
+      updateNewList,
+      clearCart,
     };
   },
   {

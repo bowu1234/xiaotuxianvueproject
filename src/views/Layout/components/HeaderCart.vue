@@ -1,7 +1,11 @@
 <script setup>
 import { useCartStore } from "@/stores/cartStore";
+import router from "@/router";
 
 const cartStore = useCartStore();
+const goToCart = () => {
+  router.push("/cartlist");
+};
 </script>
 
 <template>
@@ -33,9 +37,7 @@ const cartStore = useCartStore();
           <p>共 {{ cartStore.allCount }} 件商品</p>
           <p>&yen; {{ cartStore.allPrice.toFixed(2) }}</p>
         </div>
-        <el-button size="large" type="primaery" @click="$router.push('/cartlist')"
-          >去购物车结算</el-button
-        >
+        <el-button size="large" type="primary" @click="goToCart">去购物车结算</el-button>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@ import { loginAPI } from "@/apis/user";
 import { ElMessage } from "element-plus";
 import "element-plus/theme-chalk/el-message.css";
 import { useRouter } from "vue-router";
-import { useUserStore } from "@/stores/user";
+import { useUserStore } from "@/stores/userStore";
 
 const UserStore = useUserStore();
 const form = ref({
@@ -43,6 +43,7 @@ const rules = {
           callback(new Error("请勾选协议"));
         }
       },
+      trigger: "change",
     },
   ],
 };
@@ -97,14 +98,14 @@ const doLogin = () => {
               <el-form-item prop="account" label="账户"
                 ><el-input v-model="form.account"></el-input
               ></el-form-item>
-              <el-form-item prop="password" label="密码"
-                ><el-input v-model="form.password"></el-input
-              ></el-form-item>
+              <el-form-item prop="password" label="密码">
+                <el-input v-model="form.password" type="password" show-password></el-input>
+              </el-form-item>
               <el-form-item prop="agree" label-width="22px">
                 <el-checkbox v-model="form.agree" size="large">
                   我已同意隐私条款和服务条款
-                </el-checkbox></el-form-item
-              >
+                </el-checkbox>
+              </el-form-item>
               <el-button size="large" class="subBtn" @click="doLogin">点击登录</el-button>
             </el-form>
           </div>
@@ -115,13 +116,13 @@ const doLogin = () => {
     <footer class="login-footer">
       <div class="container">
         <p>
-          <a href="javasript:;">关于我们</a>
-          <a href="javasript:;">帮助中心</a>
-          <a href="javasript:;">售后服务</a>
-          <a href="javasript:;">配送与验收</a>
-          <a href="javasript:;">商务合作</a>
-          <a href="javasript:;">搜索推荐</a>
-          <a href="javasript:;">友情链接</a>
+          <a href="javascript:;">关于我们</a>
+          <a href="javascript:;">帮助中心</a>
+          <a href="javascript:;">售后服务</a>
+          <a href="javascript:;">配送与验收</a>
+          <a href="javascript:;">商务合作</a>
+          <a href="javascript:;">搜索推荐</a>
+          <a href="javascript:;">友情链接</a>
         </p>
         <p>CopyRight &copy; 小兔鲜儿</p>
       </div>

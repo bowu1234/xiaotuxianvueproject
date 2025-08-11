@@ -1,5 +1,5 @@
 <script setup>
-import { useCategoryStore } from "@/stores/category";
+import { useCategoryStore } from "@/stores/categoryStore";
 import HomePanel from "./HomePanel.vue";
 import { getGoodsAPI } from "@/apis/home";
 import { onMounted, ref } from "vue";
